@@ -1,0 +1,1 @@
+window.__NUXT__=(function(a){return {staticAssetsBase:"\u002Fsiloah-cruise-booking\u002F_nuxt\u002Fstatic\u002F1618364295",layout:"default",error:a,serverRendered:true,routePath:"\u002F",config:{_app:{basePath:"\u002Fsiloah-cruise-booking\u002F",assetsPath:"\u002Fsiloah-cruise-booking\u002F_nuxt\u002F",cdnURL:a}}}}(null));
