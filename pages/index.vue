@@ -2,8 +2,8 @@
   <div class="container">
     <Information :tourPackage="this.tourPackageData" />
     <Chooseroom />
-    
-   <h4 class="mt-5">Total Price: {{this.GET_FORM.totalPrice}}</h4>
+
+    <h4 class="mt-5">Total Price: {{ this.GET_FORM.totalPrice }} NTD</h4>
   </div>
 </template>
 
@@ -40,18 +40,20 @@ export default {
     ...mapGetters('roomtype', ['GET_PACKAGE_PRICE']),
     ...mapMutations('roomtype', ['SET_PACKAGE_PRICE']),
     ...mapMutations(['SET_GROUPNUMBER']),
-    ...mapGetters('form',['GET_FORM'])
+    ...mapGetters('form', ['GET_FORM']),
   },
   mounted() {
-    // first load get url param and run api to get tourpackage from TVT
-    this.getToken()
-    // get new token every 15 minutes (expired)
-    setInterval(() => {
+    this.$nextTick(() => {
+      // first load get url param and run api to get tourpackage from TVT
       this.getToken()
-    }, 900000)
+      // get new token every 15 minutes (expired)
+      setInterval(() => {
+        this.getToken()
+      }, 900000)
 
-    this.country = this.GET_COUNTRY
-    this.$store.commit('SET_GROUPNUMBER', this.$route.query.groupNumber)
+      this.country = this.GET_COUNTRY
+      this.$store.commit('SET_GROUPNUMBER', this.$route.query.groupNumber)
+    })
   },
   methods: {
     //Function to get Token
@@ -172,7 +174,7 @@ export default {
           portFee: obj.TOURPACKAGE_SALSEPRICE_CruisePortFee,
         }
         this.$store.commit('roomtype/SET_PACKAGE_PRICE', setPrices)
-          console.log(JSON.stringify(this.GET_PACKAGE_PRICE))
+        console.log(JSON.stringify(this.GET_PACKAGE_PRICE))
       }
       apiGetPackage()
     },

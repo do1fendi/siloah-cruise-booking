@@ -19,7 +19,7 @@ export const mutations = {
         state.form.traveler=[]
         if(value>0){          
           for(let i=0; i< value; i++){
-            state.form.traveler.push({name:'',status:'adult'})
+            state.form.traveler.push({index:i, name:'',status:'adult', birthday:''})
           }
         }        
         state.form.adultNum = value
@@ -27,7 +27,7 @@ export const mutations = {
       case 'kidNum':
         if(value>0){          
           for(let i=0; i< value; i++){
-            state.form.traveler.push({name:'',status:'kid'})
+            state.form.traveler.push({index: i + state.form.adultNum, name:'',status:'kid', birthday:''})
           }
         }   
         state.form.kidNum = value
@@ -37,17 +37,8 @@ export const mutations = {
         break
     }
   },
-  SET_TRAVELER(state, { index, form }) {
-    switch (index) {
-      case null:
-        state.form.traveler.push(form)
-        break
-      default:
-        state.form.traveler[index] = form
-        //push empty to make table reactive
-        state.form.traveler.push()
-        break
-    }
+  SET_TRAVELER(state, { index, field, value }) {    
+    state.form.traveler[index][field] = value    
   },
   DELETE_TRAVELER(state, index) {
     state.form.traveler.splice(index, 1)

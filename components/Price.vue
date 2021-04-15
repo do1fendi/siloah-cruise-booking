@@ -23,12 +23,12 @@ export default {
       const portFee = this.GET_PACKAGE_PRICE.portFee * (adult + kid)
       const serviceTax =
         this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['serviceTax'] * adult
-
+      
+    
       //count all adult
       if ((adult == 1 && kid == 0) || (adult == 2 && kid == 0)) {
         subTotal =
-          this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['singleRoom'] +
-          this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['serviceTax'] * adult
+          this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['singleRoom'] 
       } else if (adult == 3 && kid == 0) {
         let a = this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['singleRoom']
         let b = this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['tripleRoom']
@@ -53,7 +53,7 @@ export default {
       const value = subTotal + portFee + serviceTax
       const combine = { field, value }
       this.$store.commit('form/SET_FORM', combine)
-   
+        
     },
   },
 }

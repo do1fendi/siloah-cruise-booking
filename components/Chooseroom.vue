@@ -44,22 +44,22 @@ export default {
     return {
       form: {
         roomType: '',
-        adultNum: '0',
-        kidNum: '0',
+        adultNum: 0,
+        kidNum: 0,
       },
       adult: [
-        { value: '0', text: '0' },
-        { value: '1', text: '1' },
-        { value: '2', text: '2' },
-        { value: '3', text: '3' },
-        { value: '4', text: '4' },
+        { value: 0, text: '0' },
+        { value: 1, text: '1' },
+        { value: 2, text: '2' },
+        { value: 3, text: '3' },
+        { value: 4, text: '4' },
       ],
       kid: [
-        { value: '0', text: '0' },
-        { value: '1', text: '1' },
-        { value: '2', text: '2' },
-        { value: '3', text: '3' },
-        { value: '4', text: '4' },
+        { value: 0, text: '0' },
+        { value: 1, text: '1' },
+        { value: 2, text: '2' },
+        { value: 3, text: '3' },
+        { value: 4, text: '4' },
       ],
     }
   },
@@ -75,75 +75,75 @@ export default {
   methods: {
     onChangeAdult() {
       switch (this.form.adultNum) {
-        case '0':
+        case 0:
           this.kid = [
-            { value: '0', text: '0' },
-            { value: '1', text: '1' },
-            { value: '2', text: '2' },
-            { value: '3', text: '3' },
-            { value: '4', text: '4' },
+            { value: 0, text: '0' },
+            { value: 1, text: '1' },
+            { value: 2, text: '2' },
+            { value: 3, text: '3' },
+            { value: 4, text: '4' },
           ]
           break
-        case '1':
+        case 1:
           this.kid = [
-            { value: '0', text: '0' },
-            { value: '1', text: '1' },
-            { value: '2', text: '2' },
-            { value: '3', text: '3' },
+            { value: 0, text: '0' },
+            { value: 1, text: '1' },
+            { value: 2, text: '2' },
+            { value: 3, text: '3' },
           ]
           break
-        case '2':
+        case 2:
           this.kid = [
-            { value: '0', text: '0' },
-            { value: '1', text: '1' },
-            { value: '2', text: '2' },
+            { value: 0, text: '0' },
+            { value: 1, text: '1' },
+            { value: 2, text: '2' },
           ]
           break
-        case '3':
+        case 3:
           this.kid = [
-            { value: '0', text: '0' },
-            { value: '1', text: '1' },
+            { value: 0, text: '0' },
+            { value: 1, text: '1' },
           ]
           break
-        case '4':
-          this.kid = [{ value: '0', text: '0' }]
+        case 4:
+          this.kid = [{ value: 0, text: '0' }]
           break
       }
     },
     onChangeKid() {
       switch (this.form.kidNum) {
-        case '0':
+        case 0:
           this.adult = [
-            { value: '0', text: '0' },
-            { value: '1', text: '1' },
-            { value: '2', text: '2' },
-            { value: '3', text: '3' },
-            { value: '4', text: '4' },
+            { value: 0, text: '0' },
+            { value: 1, text: '1' },
+            { value: 2, text: '2' },
+            { value: 3, text: '3' },
+            { value: 4, text: '4' },
           ]
           break
-        case '1':
+        case 1:
           this.adult = [
-            { value: '0', text: '0' },
-            { value: '1', text: '1' },
-            { value: '2', text: '2' },
-            { value: '3', text: '3' },
+            { value: 0, text: '0' },
+            { value: 1, text: '1' },
+            { value: 2, text: '2' },
+            { value: 3, text: '3' },
           ]
           break
-        case '2':
+        case 2:
           this.adult = [
-            { value: '0', text: '0' },
-            { value: '1', text: '1' },
-            { value: '2', text: '2' },
+            { value: 0, text: '0' },
+            { value: 1, text: '1' },
+            { value: 2, text: '2' },
           ]
           break
-        case '3':
+        case 3:
           this.adult = [
-            { value: '0', text: '0' },
-            { value: '1', text: '1' },
+            { value: 0, text: '0' },
+            { value: 1, text: '1' },
           ]
           break
-        case '4':
-          this.adult = [{ value: '0', text: '0' }]
+        case 4:
+          this.adult = [{ value: 0, text: '0' }]
           break
       }
     },
