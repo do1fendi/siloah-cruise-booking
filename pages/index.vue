@@ -39,7 +39,7 @@ export default {
     ...mapGetters(['GET_TOKEN', 'GET_USERNAME', 'GET_PASSWORD']),
     ...mapGetters('roomtype', ['GET_PACKAGE_PRICE']),
     ...mapMutations('roomtype', ['SET_PACKAGE_PRICE']),
-    ...mapMutations(['SET_GROUPNUMBER']),
+    ...mapMutations(['SET_GROUPNUMBER', 'SET_TOURPACKAGE']),
     ...mapGetters('form', ['GET_FORM']),
   },
   mounted() {
@@ -100,12 +100,13 @@ export default {
         const res = await this.$axios(config)
         const data = await res.data.response.data[0].fieldData
         this.tourPackageData = data
+        this.$store.commit('SET_TOURPACKAGE', data)
         //replace some string so javascript could understand
         let obj = JSON.stringify(data).replaceAll('::', '_')
         obj = obj.replaceAll('(', '_')
         obj = obj.replaceAll(')', '_')
         obj = JSON.parse(obj)
-        console.log(obj)
+        // console.log(obj)
         const setPrices = {
           Inside_room: {
             singleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass1_1_,
