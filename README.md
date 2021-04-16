@@ -1,5 +1,5 @@
 # siloah-cruise-booking
-Link: https://do1fendi.github.io/siloah-cruise-booking/?selectedGroupNumber=TESTPRICE
+Link: https://do1fendi.github.io/siloah-cruise-booking/?groupNumber=EDA210901Z
 ## Build Setup
 
 ```bash
