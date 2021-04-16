@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <Information :tourPackage="this.tourPackageData" />
-    <Chooseroom />
-
-    <h4 class="mt-5">Total Price: {{ this.GET_FORM.totalPrice }} NTD</h4>
+    <Chooseroom />    
   </div>
 </template>
 

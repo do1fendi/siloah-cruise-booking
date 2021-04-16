@@ -33,7 +33,7 @@
       </b-col>
     </b-form>
     <Price ref="elPrice"/>
-    <TravelerForm />
+    <TravelerForm ref="defaultGender" />
   </div>
 </template>
 
@@ -162,6 +162,7 @@ export default {
       this.$store.commit('form/SET_FORM', combine)
       
       this.$refs.elPrice.calPrice()
+      this.$refs.defaultGender.defaultFields()
     },
   },
 }

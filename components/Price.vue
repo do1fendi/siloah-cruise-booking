@@ -1,6 +1,5 @@
 <template>
-  <div class="price">
-  
+  <div class="price">  
   </div>
 </template>
 
@@ -59,5 +58,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 </style>

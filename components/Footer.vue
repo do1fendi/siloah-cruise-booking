@@ -18,6 +18,6 @@ export default {
     color: azure;
     position: fixed;
     width: 100%;
-    bottom: 0px;    
+    bottom: 0px;      
 }
 </style>

@@ -19,7 +19,7 @@ export const mutations = {
         state.form.traveler=[]
         if(value>0){          
           for(let i=0; i< value; i++){
-            state.form.traveler.push({index:i, name:'',status:'adult', birthday:''})
+            state.form.traveler.push({index:i, chname:'',enLastName:'', enFirstName:'', country:'Taiwan', idNumber:'', status:'adult', birthday:'', gender:'male'})
           }
         }        
         state.form.adultNum = value
@@ -27,7 +27,7 @@ export const mutations = {
       case 'kidNum':
         if(value>0){          
           for(let i=0; i< value; i++){
-            state.form.traveler.push({index: i + state.form.adultNum, name:'',status:'kid', birthday:''})
+            state.form.traveler.push({index: i + state.form.adultNum, chname:'',enLastName:'',  enFirstName:'', country:'Taiwan', idNumber:'',status:'kid', birthday:'', gender:'male'})
           }
         }   
         state.form.kidNum = value
