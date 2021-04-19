@@ -4,6 +4,7 @@ export const state = () => ({
   token: '',
   groupNumber: '',
   tourPackage: '',
+  departureDate: '',
 })
 
 export const mutations = {
