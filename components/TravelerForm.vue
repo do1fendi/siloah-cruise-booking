@@ -142,7 +142,7 @@
     </div>
     <Submit v-on:checkForm="checkValidity($event)" />
     <Agreement ref="childAgreement" />
-    {{ this.GET_FORM }}
+    <!-- {{ this.GET_FORM }} -->
   </div>
 </template>
 

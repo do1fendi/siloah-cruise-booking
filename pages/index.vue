@@ -174,7 +174,7 @@ export default {
           portFee: obj.TOURPACKAGE_SALSEPRICE_CruisePortFee,
         }
         this.$store.commit('roomtype/SET_PACKAGE_PRICE', setPrices)
-        console.log(JSON.stringify(this.GET_PACKAGE_PRICE))
+        // console.log(JSON.stringify(this.GET_PACKAGE_PRICE))
       }
       apiGetPackage()
     },
