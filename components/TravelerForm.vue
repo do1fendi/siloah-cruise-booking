@@ -12,16 +12,25 @@
               <b-form-input
                 placeholder="Full Chinese Name"
                 name="chname"
-                @change="setTraveler(obj.index, $event, 'chname')"
+                @change="
+                  setTraveler({ a: obj.index, b: $event, c: 'chname', d: null })
+                "
                 ref="chname"
               ></b-form-input>
             </b-col>
             <b-col>
-              <label for="">Birthday *</label>
+              <label for="">Birthday * (YYYY/MM/DD)</label>
               <b-form-input
                 placeholder="YYYY/MM/DD"
                 name="birthday"
-                @change="setTraveler(obj.index, $event, 'birthday')"
+                @change="
+                  setTraveler({
+                    a: obj.index,
+                    b: $event,
+                    c: 'birthday',
+                    d: null,
+                  })
+                "
                 ref="birthday"
               ></b-form-input>
             </b-col>
@@ -32,7 +41,14 @@
               <b-form-input
                 placeholder="English Last Name"
                 name="enLastName"
-                @change="setTraveler(obj.index, $event, 'enLastName')"
+                @change="
+                  setTraveler({
+                    a: obj.index,
+                    b: $event,
+                    c: 'enLastName',
+                    d: null,
+                  })
+                "
                 ref="enLastName"
               ></b-form-input>
             </b-col>
@@ -41,7 +57,14 @@
               <b-form-input
                 placeholder="English First Name"
                 name="enFirstName"
-                @change="setTraveler(obj.index, $event, 'enFirstName')"
+                @change="
+                  setTraveler({
+                    a: obj.index,
+                    b: $event,
+                    c: 'enFirstName',
+                    d: null,
+                  })
+                "
                 ref="enFirstName"
               ></b-form-input>
             </b-col>
@@ -52,7 +75,14 @@
               <b-form-select
                 :options="country"
                 name="country"
-                @change="setTraveler(obj.index, $event, 'country')"
+                @change="
+                  setTraveler({
+                    a: obj.index,
+                    b: $event,
+                    c: 'country',
+                    d: null,
+                  })
+                "
                 ref="country"
               >
               </b-form-select>
@@ -62,21 +92,25 @@
               <b-form-select
                 :options="gender"
                 name="gender"
-                @change="setTraveler(obj.index, $event, 'gender')"
+                @change="
+                  setTraveler({ a: obj.index, b: $event, c: 'gender', d: null })
+                "
                 ref="gender"
               >
               </b-form-select>
             </b-col>
-            <b-col>
-              <label for="">Id Number *</label>
-              <b-form-input
-                placeholder="Id Number / Passport"
-                name="idNumber"
-                @change="setTraveler(obj.index, $event, 'idNumber')"
-                ref="idNumber"
-              ></b-form-input>
-            </b-col>
           </b-form-row>
+          <b-col class="pl-0 pr-0 mt-2">
+            <label for="">Id Number *</label>
+            <b-form-input
+              placeholder="Id Number / Passport"
+              name="idNumber"
+              @change="
+                setTraveler({ a: obj.index, b: $event, c: 'idNumber', d: null })
+              "
+              ref="idNumber"
+            ></b-form-input>
+          </b-col>
         </b-form>
       </b-card>
     </div>
@@ -91,7 +125,7 @@
         >
       </h6>
     </div>
-    <Submit />
+    <Submit v-on:checkForm="checkValidity($event)" />
     <Agreement ref="childAgreement" />
     {{ this.GET_FORM }}
   </div>
@@ -120,16 +154,24 @@ export default {
     })
   },
   methods: {
-    setTraveler(ind, val, input) {
-      const index = ind
-      const field = input
-      const value = val
+    setTraveler(ev) {
+      const ind = ev.a
+      const val = ev.b
+      const input = ev.c
+      //store to vuex
+      const index = ev.a
+      const field = ev.c
+      const value = ev.b
       const combine = { index, field, value }
       this.$store.commit('form/SET_TRAVELER', combine)
-      this.checkValidity(ind, val, input)
+      this.checkValidity(ev)
     },
 
-    checkValidity(ind, val, input) {
+    checkValidity(ev) {
+      const ind = ev.a
+      const val = ev.b
+      const input = ev.c
+      const submit = ev.d
       switch (input) {
         case 'enLastName':
           if (val.length < 2) {
@@ -161,12 +203,14 @@ export default {
             switch (this.GET_FORM.traveler[ind].status) {
               case 'adult':
                 if (this.ageCalculator(val) != 'adult') {
-                  alert('Age should older than 2 years old!')
+                  if (!submit) alert('Age should older than 2 years old!')
                 }
                 break
               case 'kid':
-                if (this.ageCalculator(val) != 'kid') {
-                  alert('Age should younger than 2 years old!')
+                if (this.ageCalculator(val) == 'baby') {
+                  if (!submit) alert('Age should older than 6 months')
+                } else if (this.ageCalculator(val) == 'adult') {
+                  if (!submit) alert('Age should below 2 years old')
                 }
                 break
             }
@@ -272,8 +316,8 @@ export default {
       //display the calculated age
 
       if (yearAge >= 2) return 'adult'
-      else if (yearAge < 2 && yearAge >= 0 && monthAge >= 6) return 'kid'
       else if (yearAge == 0 && monthAge < 6) return 'baby'
+      else if (yearAge < 2) return 'kid'
     },
   },
 }
