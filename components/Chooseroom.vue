@@ -1,24 +1,26 @@
 <template>
-  <div class="chooseroom">
+  <div class="chooseroom mt-5">
     <b-form>
       <b-form-row>
         <b-col>
-          <label for="">Choose room</label>
+          <label for="">Choose room / 選房</label>
           <b-form-select
             v-model="form.roomType"
             :options="roomOption"
+            ref="room"
           ></b-form-select>
         </b-col>
         <b-col>
-          <label for="">Adult</label>
+          <label for="">Adult / 大人</label>
           <b-form-select
             v-model="form.adultNum"
             :options="adult"
             @change="onChangeAdult"
+            ref="adultNum"
           ></b-form-select>
         </b-col>
         <b-col>
-          <label for="">Kids</label>
+          <label for="">Kids / 小孩 （6M-2Y）</label>
           <b-form-select
             v-model="form.kidNum"
             :options="kid"
@@ -32,7 +34,7 @@
         >
       </b-col>
     </b-form>
-    <Price ref="elPrice"/>
+    <Price ref="elPrice" />
     <TravelerForm ref="defaultGender" />
   </div>
 </template>
@@ -148,21 +150,36 @@ export default {
       }
     },
     onClickSet() {
-      let field = 'roomType'
-      let value = this.form.roomType
-      let combine = { field, value }
-      this.$store.commit('form/SET_FORM', combine)
-      field = 'adultNum'
-      value = this.form.adultNum
-      combine = { field, value }
-      this.$store.commit('form/SET_FORM', combine)
-      field = 'kidNum'
-      value = this.form.kidNum
-      combine = { field, value }
-      this.$store.commit('form/SET_FORM', combine)
-      
-      this.$refs.elPrice.calPrice()
-      this.$refs.defaultGender.defaultFields()
+      if (
+        this.GET_FORM.register.lastname == '' ||
+        this.GET_FORM.register.firstname == '' ||
+        this.GET_FORM.register.email == '' ||
+        this.GET_FORM.register.phoneNumber == '' ||
+        this.GET_FORM.register.address == ''
+      ) {
+        alert("Pleas fill all 訂購人 fields")
+      }else if (this.form.roomType == ""){
+         this.$refs.room.$el.focus()       
+      }else if (this.form.adultNum == 0){
+         this.$refs.adultNum.$el.focus()
+      } 
+      else {
+        let field = 'roomType'
+        let value = this.form.roomType
+        let combine = { field, value }
+        this.$store.commit('form/SET_FORM', combine)
+        field = 'adultNum'
+        value = this.form.adultNum
+        combine = { field, value }
+        this.$store.commit('form/SET_FORM', combine)
+        field = 'kidNum'
+        value = this.form.kidNum
+        combine = { field, value }
+        this.$store.commit('form/SET_FORM', combine)
+
+        this.$refs.elPrice.calPrice()
+        this.$refs.defaultGender.defaultFields()
+      }
     },
   },
 }

@@ -3,23 +3,28 @@
     <div v-for="obj in this.GET_FORM.traveler" :key="obj.index" class="mt-4">
       <b-card>
         <b-badge variant="primary" class="p-2"
-          >{{ obj.index }} {{ obj.status }}</b-badge
+          >{{ obj.index + 1 }}. {{ obj.status.toUpperCase() }}</b-badge
         >
         <b-form class="mt-2">
           <b-form-row>
             <b-col>
-              <label for="">Full Chinese Name</label>
+              <label for="">Full Chinese Name / 中文姓名 </label>
               <b-form-input
                 placeholder="Full Chinese Name"
                 name="chname"
                 @change="
-                  setTraveler({ a: obj.index, b: $event, c: 'chname', d: null })
+                  setTraveler({
+                    a: obj.index,
+                    b: $event,
+                    c: 'chname',
+                    d: null,
+                  })
                 "
                 ref="chname"
               ></b-form-input>
             </b-col>
             <b-col>
-              <label for="">Birthday * (YYYY/MM/DD)</label>
+              <label for="">Birthday / 生日 * (YYYY/MM/DD)</label>
               <b-form-input
                 placeholder="YYYY/MM/DD"
                 name="birthday"
@@ -37,7 +42,7 @@
           </b-form-row>
           <b-form-row class="mt-2">
             <b-col>
-              <label for="">English Last Name *</label>
+              <label for="">English Last Name / 英文姓 *</label>
               <b-form-input
                 placeholder="English Last Name"
                 name="enLastName"
@@ -53,7 +58,7 @@
               ></b-form-input>
             </b-col>
             <b-col>
-              <label for="">English First Name *</label>
+              <label for="">English First Name / 英文名*</label>
               <b-form-input
                 placeholder="English First Name"
                 name="enFirstName"
@@ -71,7 +76,7 @@
           </b-form-row>
           <b-form-row class="mt-2">
             <b-col>
-              <label for="">Country *</label>
+              <label for="">Country / 國籍*</label>
               <b-form-select
                 :options="country"
                 name="country"
@@ -88,12 +93,17 @@
               </b-form-select>
             </b-col>
             <b-col>
-              <label for="">Gender *</label>
+              <label for="">Gender / 性別 *</label>
               <b-form-select
                 :options="gender"
                 name="gender"
                 @change="
-                  setTraveler({ a: obj.index, b: $event, c: 'gender', d: null })
+                  setTraveler({
+                    a: obj.index,
+                    b: $event,
+                    c: 'gender',
+                    d: null,
+                  })
                 "
                 ref="gender"
               >
@@ -101,12 +111,17 @@
             </b-col>
           </b-form-row>
           <b-col class="pl-0 pr-0 mt-2">
-            <label for="">Id Number *</label>
+            <label for="">Id Number / 身份證 *</label>
             <b-form-input
               placeholder="Id Number / Passport"
               name="idNumber"
               @change="
-                setTraveler({ a: obj.index, b: $event, c: 'idNumber', d: null })
+                setTraveler({
+                  a: obj.index,
+                  b: $event,
+                  c: 'idNumber',
+                  d: null,
+                })
               "
               ref="idNumber"
             ></b-form-input>

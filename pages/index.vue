@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <Information :tourPackage="this.tourPackageData" />
+    <Register />
     <Chooseroom />    
   </div>
 </template>

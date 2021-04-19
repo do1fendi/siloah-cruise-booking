@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     onSubmit() {
+      
       //a= index, b=value, c=fieldname
       let invalid = 0
       this.GET_FORM.traveler.forEach((el) => {
@@ -67,7 +68,9 @@ export default {
         } 
       })
 
-      alert(invalid)
+      
+
+      // alert(invalid)
       if (!invalid){
         alert('ok')
       }
