@@ -63,6 +63,8 @@ export const mutations = {
               status: 'adult',
               birthday: '',
               gender: 'male',
+              phoneCode: '+886',
+              phoneNumber: '',
             })
           }
         }
@@ -80,7 +82,7 @@ export const mutations = {
               idNumber: '',
               status: 'kid',
               birthday: '',
-              gender: 'male',
+              gender: 'male',              
             })
           }
         }

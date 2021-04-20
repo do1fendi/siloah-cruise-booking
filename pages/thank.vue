@@ -14,13 +14,15 @@ export default {
   mounted() {
     console.log(this.GET_FORM.traveler.length)
     if (this.GET_FORM.traveler.length > 0) {
+      const tempCode = Date.now().toString()
+      const orderCode = 'ORC'+ tempCode.slice(tempCode.length - 7)
       const query = JSON.stringify({
         fieldData: {
-          RS_salesNumber: 'cobaa',
+          RS_salesNumber: orderCode,
           json_byNumber: `${JSON.stringify(this.GET_FORM)}`
         },
-        // script: 'order_create',
-        // 'script.param': 'cobaa',
+        script: 'order_create',
+        'script.param': orderCode,
       })
 
       //   console.log(query)

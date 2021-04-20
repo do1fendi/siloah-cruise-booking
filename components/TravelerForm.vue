@@ -126,6 +126,41 @@
               ref="idNumber"
             ></b-form-input>
           </b-col>
+          <b-form-row v-if="obj.status == 'adult'" class="mt-2">
+            <b-col>
+              <label for="">Phone Code *</label
+              ><b-form-select
+                :options="GET_PHONECODE"
+                @change="
+                  setTraveler({
+                    a: obj.index,
+                    b: $event,
+                    c: 'phoneCode',
+                    d: null,
+                  })
+                "
+                ref="phoneCode"
+              >
+              </b-form-select
+            ></b-col>
+            <b-col>
+              <label for="">Phone Number / 手機 *</label>
+              <b-form-input
+                placeholder="Phone Number"
+                name="phoneNumber"
+                type="number"
+                @change="
+                  setTraveler({
+                    a: obj.index,
+                    b: $event,
+                    c: 'phoneNumber',
+                    d: null,
+                  })
+                "
+                ref="phoneNumber"
+              ></b-form-input>
+            </b-col>
+          </b-form-row>
         </b-form>
       </b-card>
     </div>
@@ -142,7 +177,7 @@
     </div>
     <Submit v-on:checkForm="checkValidity($event)" />
     <Agreement ref="childAgreement" />
-    <!-- {{ this.GET_FORM }} -->
+    {{ this.GET_FORM }}
   </div>
 </template>
 
@@ -161,7 +196,7 @@ export default {
   computed: {
     ...mapGetters('form', ['GET_FORM']),
     ...mapGetters(['GET_TOURPACKAGE']),
-    ...mapGetters('country', ['GET_COUNTRY']),
+    ...mapGetters('country', ['GET_COUNTRY', 'GET_PHONECODE']),
   },
   mounted() {
     this.$nextTick(() => {
@@ -257,17 +292,34 @@ export default {
             this.$refs.idNumber[ind].$el.classList.add('is-valid')
           }
           break
+        case 'phoneNumber':
+          if (val.length < 9) {
+            this.$refs.phoneNumber[ind].$el.classList.add('form-control')
+            this.$refs.phoneNumber[ind].$el.classList.add('is-invalid')
+            this.$refs.phoneNumber[ind].$el.focus()
+          } else {
+            this.$refs.phoneNumber[ind].$el.classList.remove('is-invalid')
+            this.$refs.phoneNumber[ind].$el.classList.add('is-valid')
+          }
+          break
       }
     },
     defaultFields() {
+      // for (let i = 0; i <= this.GET_FORM.traveler.length; i++) {
+      //   this.$refs.gender[i].value = 'male'
+      //   this.$refs.country[i].value = 'Taiwan'
+      //   this.$refs.phoneCode[i].value = '+886'
+      // }
       setTimeout(() => {
         if (this.$refs.gender != 'undefined') {
           for (let i = 0; i < this.GET_FORM.traveler.length; i++) {
             this.$refs.gender[i].$el.value = 'male'
             this.$refs.country[i].$el.value = 'Taiwan'
+            if (this.GET_FORM.traveler[i].status == 'adult')
+              this.$refs.phoneCode[i].$el.value = '+886'
           }
         }
-      }, 500)
+      }, 200)
     },
     showAgreementModal() {
       this.$refs.childAgreement.showAgreement()

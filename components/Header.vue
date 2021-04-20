@@ -6,20 +6,7 @@
 
 <script>
 export default {
-  head() {
-    return {
-      script: [
-        {
-          src: 'https://code.jquery.com/jquery-3.2.1.min.js',
-        },
-        {
-          hid: 'tappay',
-          src: 'https://js.tappaysdk.com/tpdirect/v5.1.0',
-          defer: true,
-        },
-      ],
-    }
-  },
+
 }
 </script>
 
