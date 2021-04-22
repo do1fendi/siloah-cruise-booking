@@ -2,7 +2,8 @@
   <div class="container">
     <Information :tourPackage="this.tourPackageData" />
     <Register />
-    <Chooseroom />    
+    <Chooseroom />
+    {{GET_FORM}}
   </div>
 </template>
 
@@ -40,6 +41,7 @@ export default {
     ...mapMutations('roomtype', ['SET_PACKAGE_PRICE']),
     ...mapMutations(['SET_GROUPNUMBER', 'SET_TOURPACKAGE']),
     ...mapGetters('form', ['GET_FORM']),
+    
   },
   mounted() {
     this.$nextTick(() => {
@@ -52,6 +54,7 @@ export default {
 
       this.country = this.GET_COUNTRY
       this.$store.commit('SET_GROUPNUMBER', this.$route.query.groupNumber)
+      
     })
   },
   methods: {

@@ -1,5 +1,6 @@
 export const state = () => ({
   form: {
+    groupNumber: '',
     roomType: '',
     adultNum: 0,
     kidNum: 0,
@@ -82,7 +83,7 @@ export const mutations = {
               idNumber: '',
               status: 'kid',
               birthday: '',
-              gender: 'male',              
+              gender: 'male',
             })
           }
         }
@@ -101,6 +102,9 @@ export const mutations = {
   },
   SET_REGVALIDITY(state, payload) {
     state.regValidity = payload
+  },
+  SET_GROUPNUMBER(state, payload) {
+    state.form.groupNumber = payload
   },
 }
 

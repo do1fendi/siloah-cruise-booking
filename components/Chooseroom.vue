@@ -68,7 +68,7 @@ export default {
   computed: {
     ...mapGetters('roomtype', ['GET_ROOMTYPE']),
     ...mapGetters('form', ['GET_FORM']),
-    ...mapMutations('form', ['SET_FORM']),
+    ...mapMutations('form', ['SET_FORM', 'SET_GROUPNUMBER']),
     roomOption: function () {
       return this.GET_ROOMTYPE
     },
@@ -157,13 +157,12 @@ export default {
         this.GET_FORM.register.phoneNumber == '' ||
         this.GET_FORM.register.address == ''
       ) {
-        alert("Pleas fill all 訂購人 fields")
-      }else if (this.form.roomType == ""){
-         this.$refs.room.$el.focus()       
-      }else if (this.form.adultNum == 0){
-         this.$refs.adultNum.$el.focus()
-      } 
-      else {
+        alert('Pleas fill all 訂購人 fields')
+      } else if (this.form.roomType == '') {
+        this.$refs.room.$el.focus()
+      } else if (this.form.adultNum == 0) {
+        this.$refs.adultNum.$el.focus()
+      } else {
         let field = 'roomType'
         let value = this.form.roomType
         let combine = { field, value }
@@ -176,6 +175,8 @@ export default {
         value = this.form.kidNum
         combine = { field, value }
         this.$store.commit('form/SET_FORM', combine)
+
+        this.$store.commit('form/SET_GROUPNUMBER', this.$route.query.groupNumber)
 
         this.$refs.elPrice.calPrice()
         this.$refs.defaultGender.defaultFields()
