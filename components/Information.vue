@@ -19,6 +19,20 @@
         </b-col> -->
       </b-row>
     </b-alert>
+    <b-alert show variant="danger">
+      <b-row>
+        <b-col>
+          <p>
+            Note: An order is limited to four travelers (or one room). If you
+            want to register for more than four travelers (or more than one
+            room), please register on seperate order.
+          </p>
+          <p>
+            訂房方式：一間房為一張訂單，如需訂購第二間房，請再建立新訂單，以此類推。
+          </p>
+        </b-col>
+      </b-row>
+    </b-alert>
   </div>
 </template>
 
@@ -33,8 +47,10 @@ export default {
     }
   },
   computed: {
-    variant() {      
-      this.available_seat = this.tourPackage.seat_available ? this.tourPackage.seat_available: '0'
+    variant() {
+      this.available_seat = this.tourPackage.seat_available
+        ? this.tourPackage.seat_available
+        : '0'
       switch (true) {
         case this.available_seat > 10:
           return 'primary'
@@ -56,9 +72,9 @@ export default {
   font-weight: 600;
 }
 .avSeat {
-  text-align: right; 
+  text-align: right;
 }
 .avFontSize {
-    font-weight: 700;
+  font-weight: 700;
 }
 </style>

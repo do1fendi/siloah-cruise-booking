@@ -312,6 +312,8 @@ export default {
       // }
       setTimeout(() => {
         if (this.$refs.gender != 'undefined') {
+          //set focus after set button pressed
+          this.$refs.chname[0].$el.focus()
           for (let i = 0; i < this.GET_FORM.traveler.length; i++) {
             this.$refs.gender[i].$el.value = 'male'
             this.$refs.country[i].$el.value = 'Taiwan'

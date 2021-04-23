@@ -31,7 +31,7 @@
           {{ item.status.replace(/^./, item.status[0].toUpperCase()) }}:
           {{
             item.status == 'adult'
-              ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
+              ? item.index == 0 || item.index == 1 ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom : GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom
               : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom
           }}
           + {{ GET_PACKAGE_PRICE.portFee }} +
@@ -44,7 +44,7 @@
           {{
             (
               (item.status == 'adult'
-                ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
+                ? item.index == 0 || item.index == 1 ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom : GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom
                 : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom) +
               GET_PACKAGE_PRICE.portFee +
               (item.status == 'adult'

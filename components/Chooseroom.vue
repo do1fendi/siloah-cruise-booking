@@ -3,7 +3,7 @@
     <b-form>
       <b-form-row>
         <b-col>
-          <label for="">Choose room / 選房</label>
+          <label for="">Room / 選房</label>
           <b-form-select
             v-model="form.roomType"
             :options="roomOption"
