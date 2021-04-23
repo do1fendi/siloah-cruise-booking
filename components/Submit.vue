@@ -1,16 +1,76 @@
 <template>
-  <div class="submit">
-    <h4 class="mt-5 mb-5">
-      Total Price:
-      {{
-        this.GET_FORM.totalPrice
-          .toString()
-          .replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')
-      }}
-      NTD
-    </h4>
+  <div>
+    <b-alert
+      variant="success"
+      show
+      v-if="GET_FORM.traveler.length > 0"
+      class="submit"
+    >
+      <h3>Detail</h3>
+      <hr>
+      <p class="mb-2">Room Type: {{ GET_FORM.roomType }}</p>
+      <div v-if="GET_FORM.traveler.length == 1">
+        <p>
+          1. Adult: {{ GET_PACKAGE_PRICE[GET_FORM.roomType].singleRoom }} +
+          {{ GET_PACKAGE_PRICE.portFee }} +
+          {{ GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax }} =
+          {{
+            (
+              GET_PACKAGE_PRICE[GET_FORM.roomType].singleRoom +
+              GET_PACKAGE_PRICE.portFee +
+              GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax
+            )
+              .toString()
+              .replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')
+          }}
+        </p>
+      </div>
+      <div v-else>
+        <p v-for="item in GET_FORM.traveler" :key="item.index">
+          {{ item.index + 1 }}.
+          {{ item.status.replace(/^./, item.status[0].toUpperCase()) }}:
+          {{
+            item.status == 'adult'
+              ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
+              : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom
+          }}
+          + {{ GET_PACKAGE_PRICE.portFee }} +
+          {{
+            item.status == 'adult'
+              ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax
+              : 0
+          }}
+          =
+          {{
+            (
+              (item.status == 'adult'
+                ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
+                : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom) +
+              GET_PACKAGE_PRICE.portFee +
+              (item.status == 'adult'
+                ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax
+                : 0)
+            )
+              .toString()
+              .replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')
+          }}
+        </p>
+      </div>
+      <div class="mt-5 mb-2">
+         <h5>
+        Total Price:
+        {{
+          this.GET_FORM.totalPrice
+            .toString()
+            .replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')
+        }}
+        NTD
+      </h5>
+      </div>
+     
+    </b-alert>
     <div class="submit text-center mt-4">
-      <b-button variant="warning" @click="onSubmit">Submit</b-button>
+      <b-button variant="warning" @click="onSubmit">Submit / 送出</b-button>
     </div>
   </div>
 </template>
@@ -20,7 +80,8 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
   computed: {
     ...mapGetters('form', ['GET_FORM', 'GET_FORMVALIDITY']),
-    ...mapGetters(['GET_TOKEN','GET_TOURPACKAGE']),
+    ...mapGetters('roomtype', ['GET_PACKAGE_PRICE']),
+    ...mapGetters(['GET_TOKEN', 'GET_TOURPACKAGE']),
     ...mapMutations('form', ['SET_FORMVALIDITY']),
   },
   methods: {
@@ -48,7 +109,11 @@ export default {
           })
           invalid += 1
         }
-        if (el.birthday === '' || !pattern.test(el.birthday) || el.status != this.ageCalculator(el.birthday)) {
+        if (
+          el.birthday === '' ||
+          !pattern.test(el.birthday) ||
+          el.status != this.ageCalculator(el.birthday)
+        ) {
           this.$emit('checkForm', {
             a: el.index,
             b: '',
@@ -69,7 +134,7 @@ export default {
       })
       // alert(invalid)
       if (!invalid) {
-        alert(this.GET_TOKEN)
+        // alert(this.GET_TOKEN)
         this.$router.push('thank')
       }
     },
@@ -139,5 +204,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+p {
+  margin-bottom: 0rem;
+}
 </style>

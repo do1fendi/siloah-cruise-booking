@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <h2>Welcome to Siloah Booking Web</h2>
+    <h2>Siloah Cruise Booking</h2>
   </div>
 </template>
 

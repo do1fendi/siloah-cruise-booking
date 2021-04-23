@@ -1,7 +1,22 @@
 <template>
-  <div class="thank text-center">
-    <h1>THANKS</h1>
-  </div>
+   <b-container class="text-center mt-3">
+    <div class="thank">
+      <b-alert variant="success" show>
+        <h1>Booking Success / 成功</h1>
+      </b-alert>
+      <div class="detail mt-5 text-left w-75">
+        <h4 class="mb-4">Detail Transaction</h4>
+        <!-- <p>Order Number: {{ GET_ORDERNUMBER }}</p> -->
+        <p>Adult: {{ GET_FORM.adultNum }}</p>
+        <p>Kid: {{ GET_FORM.kidNum }}</p>
+        <p>Total Price: {{ GET_FORM.totalPrice }} TWD</p>
+      </div>
+      <h3 class="mt-5">
+        Check another Itinerary. at
+        <a href="https://www.taiwanviptravel.com">here</a>
+      </h3>
+    </div>
+  </b-container>
 </template>
 
 <script>
@@ -47,5 +62,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.detail {
+  margin-left: auto;
+  margin-right: auto;
+}
+p {
+  font-size: 18px;
+  font-weight: 600;
+}
 </style>
