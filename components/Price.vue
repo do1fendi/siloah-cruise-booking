@@ -1,6 +1,5 @@
 <template>
-  <div class="price">  
-  </div>
+  <div class="price"></div>
 </template>
 
 <script>
@@ -22,12 +21,10 @@ export default {
       const portFee = this.GET_PACKAGE_PRICE.portFee * (adult + kid)
       const serviceTax =
         this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['serviceTax'] * adult
-      
-    
+
       //count all adult
       if ((adult == 1 && kid == 0) || (adult == 2 && kid == 0)) {
-        subTotal =
-          this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['singleRoom'] 
+        subTotal = this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['singleRoom']
       } else if (adult == 3 && kid == 0) {
         let a = this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['singleRoom']
         let b = this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['tripleRoom']
@@ -38,7 +35,18 @@ export default {
         subTotal = a + b * 2
       }
       //adult + kid
-      else if ((adult == 1 && kid > 0) || (adult == 2 && kid > 0)) {
+      else if (adult == 1 && kid > 0) {
+        let a = 0
+        let b = 0
+        if (kid > 1) {
+          a = this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['singleRoom']
+          b = this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['kidRoom']
+          subTotal = a + b * (kid - 1)
+        } else {
+          a = this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['singleRoom']         
+          subTotal = a 
+        }
+      } else if (adult == 2 && kid > 0) {
         let a = this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['singleRoom']
         let b = this.GET_PACKAGE_PRICE[this.GET_FORM.roomType]['kidRoom']
         subTotal = a + b * kid
@@ -52,12 +60,10 @@ export default {
       const value = subTotal + portFee + serviceTax
       const combine = { field, value }
       this.$store.commit('form/SET_FORM', combine)
-        
     },
   },
 }
 </script>
 
 <style scoped>
-
 </style>

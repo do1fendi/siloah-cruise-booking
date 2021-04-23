@@ -9,7 +9,10 @@
       <h3>Detail</h3>
       <hr>
       <p class="mb-2">Room Type: {{ GET_FORM.roomType }}</p>
-      <div v-if="GET_FORM.traveler.length == 1">
+      <table>
+        <tr><th>hello</th><th>hehrerh</th></tr>
+      </table>
+      <div v-if="GET_FORM.adultNum == 1 && GET_FORM.kidNum == 1">
         <p>
           1. Adult: {{ GET_PACKAGE_PRICE[GET_FORM.roomType].singleRoom }} +
           {{ GET_PACKAGE_PRICE.portFee }} +
