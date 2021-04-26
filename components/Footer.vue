@@ -15,9 +15,8 @@ export default {
     background-color: #434852;
     padding: 20px;
     text-align: center;
-    color: azure;
-    position: fixed;
+    color: azure;    
     width: 100%;
-    bottom: 0px;      
+        
 }
 </style>
