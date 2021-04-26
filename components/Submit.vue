@@ -9,12 +9,7 @@
       <h3>Detail</h3>
       <hr />
       <p class="mb-2">Room Type: {{ GET_FORM.roomType }}</p>
-      <table>
-        <tr>
-          <th>hello</th>
-          <th>hehrerh</th>
-        </tr>
-      </table>
+
       <!-- if only one traveler (adult) -->
       <div v-if="GET_FORM.adultNum == 1 && GET_FORM.kidNum == 0">
         <p>
@@ -60,39 +55,55 @@
         </p>
       </div>
       <!-- if one adult and more than zero kid -->
-      <div v-else-if="GET_FORM.adultNum == 1 && GET_FORM.kidNum > 0 || GET_FORM.adultNum == 2 && GET_FORM.kidNum > 0">
+      <div
+        v-else-if="
+          (GET_FORM.adultNum == 1 && GET_FORM.kidNum > 0) ||
+          (GET_FORM.adultNum == 2 && GET_FORM.kidNum > 0)
+        "
+      >
         <p v-for="item in GET_FORM.traveler" :key="item.index">
           {{ item.index + 1 }}.
           {{ item.status.replace(/^./, item.status[0].toUpperCase()) }}
           {{ item.status == 'adult' ? '(大人)' : '(小孩)' }}:
-          {{ item.status == 'adult' || item.status == 'kid' && item.index == 1 ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom }} +
-          {{  GET_PACKAGE_PRICE.portFee }} +
-          {{ item.status == 'adult' ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax : 0 }} = 
-          {{ ((item.status == 'adult' || item.status == 'kid' && item.index == 1 ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom) + (GET_PACKAGE_PRICE.portFee) + (item.status == 'adult' ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax : 0)).toString()
-              .replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')}}
-        </p>
-      </div>
-      <div v-else-if="GET_FORM.adultNum == 3 && GET_FORM.kidNum > 0 ">
-        <p v-for="item in GET_FORM.traveler" :key="item.index">
-          {{ item.index + 1 }}.
-          {{ item.status.replace(/^./, item.status[0].toUpperCase()) }}
-          {{ item.status == 'adult' ? '(大人)' : '(小孩)' }}:
-          <span v-if="item.status == 'adult' && item.index > 2">{{GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom}}</span>
-          <!-- {{ item.status == 'adult' && item.index ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom }} + -->
-          <!-- {{  GET_PACKAGE_PRICE.portFee }} +
-          {{ item.status == 'adult' ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax : 0 }} = 
-          {{ ((item.status == 'adult' || item.status == 'kid' && item.index == 1 ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom) + (GET_PACKAGE_PRICE.portFee) + (item.status == 'adult' ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax : 0)).toString()
-              .replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')}} -->
-        </p>
-      </div>
-
-      <!-- <div v-else>
-        <p v-for="item in GET_FORM.traveler" :key="item.index">
-          {{ item.index + 1 }}.
-          {{ item.status.replace(/^./, item.status[0].toUpperCase()) }}:
+          {{
+            item.status == 'adult' || (item.status == 'kid' && item.index == 1)
+              ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
+              : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom
+          }}
+          + {{ GET_PACKAGE_PRICE.portFee }} +
           {{
             item.status == 'adult'
-              ? item.index == 0 || item.index == 1 ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom : GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom
+              ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax
+              : 0
+          }}
+          =
+          {{
+            (
+              (item.status == 'adult' ||
+              (item.status == 'kid' && item.index == 1)
+                ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
+                : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom) +
+              GET_PACKAGE_PRICE.portFee +
+              (item.status == 'adult'
+                ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax
+                : 0)
+            )
+              .toString()
+              .replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')
+          }}
+        </p>
+      </div>
+      <!-- if adult == 3 and kid > 0 -->
+      <div v-else-if="GET_FORM.adultNum == 3 && GET_FORM.kidNum > 0">
+        <p v-for="item in GET_FORM.traveler" :key="item.index">
+          {{ item.index + 1 }}.
+          {{ item.status.replace(/^./, item.status[0].toUpperCase()) }}
+          {{ item.status == 'adult' ? '(大人)' : '(小孩)' }}:
+          {{
+            item.status == 'adult'
+              ? (item.index == 0 || item.index == 1)
+                ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
+                : GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom
               : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom
           }}
           + {{ GET_PACKAGE_PRICE.portFee }} +
@@ -105,7 +116,9 @@
           {{
             (
               (item.status == 'adult'
-                ? item.index == 0 || item.index == 1 ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom : GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom
+                ? (item.index == 2)
+                  ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
+                  : GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom
                 : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom) +
               GET_PACKAGE_PRICE.portFee +
               (item.status == 'adult'
@@ -116,7 +129,7 @@
               .replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')
           }}
         </p>
-      </div> -->
+      </div>
       <div class="mt-5 mb-2">
         <h5>
           Total Price:
