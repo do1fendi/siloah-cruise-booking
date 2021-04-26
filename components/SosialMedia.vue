@@ -13,7 +13,7 @@ export default {
 
 <style scoped>
 .sosialMedia{
-    width: 4rem;
+    width: 3rem;
     position:fixed;
     bottom:20px;
     right:20px;

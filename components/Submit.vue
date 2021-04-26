@@ -14,8 +14,8 @@
       <div v-if="GET_FORM.adultNum == 1 && GET_FORM.kidNum == 0">
         <p>
           1. Adult: {{ GET_PACKAGE_PRICE[GET_FORM.roomType].singleRoom }} +
-          {{ GET_PACKAGE_PRICE.portFee }} +
-          {{ GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax }} =
+          {{ GET_PACKAGE_PRICE.portFee }} (港務税) +
+          {{ GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax }} (服務費) =
           {{
             (
               GET_PACKAGE_PRICE[GET_FORM.roomType].singleRoom +
@@ -38,9 +38,9 @@
               : GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom
           }}
           +
-          {{ GET_PACKAGE_PRICE.portFee }}
+          {{ GET_PACKAGE_PRICE.portFee }} (港務税) 
           +
-          {{ GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax }} =
+          {{ GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax }} (服務費) =
           {{
             (
               (item.index == 0 || item.index == 1
@@ -70,12 +70,12 @@
               ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
               : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom
           }}
-          + {{ GET_PACKAGE_PRICE.portFee }} +
+          + {{ GET_PACKAGE_PRICE.portFee }} (港務税) +
           {{
             item.status == 'adult'
               ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax
               : 0
-          }}
+          }} (服務費) 
           =
           {{
             (
@@ -106,12 +106,12 @@
                 : GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom
               : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom
           }}
-          + {{ GET_PACKAGE_PRICE.portFee }} +
+          + {{ GET_PACKAGE_PRICE.portFee }} (港務税) +
           {{
             item.status == 'adult'
               ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax
               : 0
-          }}
+          }} (服務費) 
           =
           {{
             (
