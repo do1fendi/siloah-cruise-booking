@@ -5,6 +5,7 @@ export const state = () => ({
   groupNumber: '',
   tourPackage: '',
   departureDate: '',
+  orderCode:''
 })
 
 export const mutations = {
@@ -17,6 +18,9 @@ export const mutations = {
   SET_TOURPACKAGE(state, payload) {
     state.tourPackage = payload
   },
+  SET_ORDERCODE(state, payload) {
+    state.orderCode = payload
+  },
 }
 
 export const getters = {
@@ -25,4 +29,5 @@ export const getters = {
   GET_TOKEN: (state) => state.token,
   GET_GROUPNUMBER: (state) => state.groupNumber,
   GET_TOURPACKAGE: (state) => state.tourPackage,
+  GET_ORDERCODE: (state) => state.orderCode,
 }

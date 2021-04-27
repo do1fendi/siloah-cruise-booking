@@ -38,8 +38,7 @@
               : GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom
           }}
           +
-          {{ GET_PACKAGE_PRICE.portFee }} (港務税) 
-          +
+          {{ GET_PACKAGE_PRICE.portFee }} (港務税) +
           {{ GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax }} (服務費) =
           {{
             (
@@ -75,8 +74,8 @@
             item.status == 'adult'
               ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax
               : 0
-          }} (服務費) 
-          =
+          }}
+          (服務費) =
           {{
             (
               (item.status == 'adult' ||
@@ -101,7 +100,7 @@
           {{ item.status == 'adult' ? '(大人)' : '(小孩)' }}:
           {{
             item.status == 'adult'
-              ? (item.index == 0 || item.index == 1)
+              ? item.index == 0 || item.index == 1
                 ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
                 : GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom
               : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom
@@ -111,12 +110,12 @@
             item.status == 'adult'
               ? GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax
               : 0
-          }} (服務費) 
-          =
+          }}
+          (服務費) =
           {{
             (
               (item.status == 'adult'
-                ? (item.index == 2)
+                ? item.index == 2
                   ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
                   : GET_PACKAGE_PRICE[GET_FORM.roomType].tripleRoom
                 : GET_PACKAGE_PRICE[GET_FORM.roomType].kidRoom) +
@@ -156,6 +155,7 @@ export default {
     ...mapGetters('roomtype', ['GET_PACKAGE_PRICE']),
     ...mapGetters(['GET_TOKEN', 'GET_TOURPACKAGE']),
     ...mapMutations('form', ['SET_FORMVALIDITY']),
+    ...mapMutations(['SET_ORDERCODE']),
   },
   methods: {
     onSubmit() {
@@ -208,6 +208,9 @@ export default {
       // alert(invalid)
       if (!invalid) {
         // alert(this.GET_TOKEN)
+        const tempCode = Date.now().toString()
+        const orderCode = 'ORC' + tempCode.slice(tempCode.length - 7)
+        this.$store.commit('SET_ORDERCODE', orderCode)
         this.$router.push('thank')
       }
     },
