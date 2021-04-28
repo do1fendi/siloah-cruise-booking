@@ -1,36 +1,44 @@
 <template>
-   <b-container class="text-center mt-3">
+  <b-container class="text-center mt-3">
     <div class="thank">
       <b-alert variant="success" show>
         <h1>Booking Success / 成功</h1>
       </b-alert>
       <div class="detail mt-5 text-left w-75">
-        <h4 class="mb-4">Detail Transaction</h4>
-        <!-- <p>Order Number: {{ GET_ORDERNUMBER }}</p> -->
-        <p>Adult: {{ GET_FORM.adultNum }}</p>
-        <p>Kid: {{ GET_FORM.kidNum }}</p>
-        <p>Total Price: {{ GET_FORM.totalPrice }} TWD</p>
+        <h4 class="mb-4">Detail / 訂單資訊</h4>
+        <p>Order / 訂單編號: {{ GET_ORDERCODE }}</p>
+        <p>Adult / 成人: {{ GET_FORM.adultNum }}</p>
+        <p>Kid / 小孩: {{ GET_FORM.kidNum }}</p>
+        <p>
+          Total Price / 總額:
+          {{
+            GET_FORM.totalPrice
+              .toString()
+              .replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')
+          }}
+          TWD
+        </p>
+        <h4 class="mt-5">
+          Payment Link (點選連結付款)
+          <a :href="paymentLink">{{ paymentLink }}</a>
+        </h4>
       </div>
-      <h3 class="mt-5">
-        To do Payment Please click 
-        <a :href="paymentLink">{{paymentLink}}</a>
-      </h3>
+      
     </div>
-    
   </b-container>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  data(){
-    return{
-      paymentLink:''
+  data() {
+    return {
+      paymentLink: '',
     }
   },
   computed: {
     ...mapGetters('form', ['GET_FORM']),
-    ...mapGetters(['GET_TOKEN','GET_GROUPNUMBER', 'GET_ORDERCODE']),
+    ...mapGetters(['GET_TOKEN', 'GET_GROUPNUMBER', 'GET_ORDERCODE']),
   },
   mounted() {
     console.log(this.GET_FORM.traveler.length)
@@ -40,7 +48,7 @@ export default {
       const query = JSON.stringify({
         fieldData: {
           RS_salesNumber: this.GET_ORDERCODE,
-          json_byNumber: `${JSON.stringify(this.GET_FORM)}`
+          json_byNumber: `${JSON.stringify(this.GET_FORM)}`,
         },
         script: 'order_create',
         'script.param': this.GET_ORDERCODE,
@@ -65,8 +73,8 @@ export default {
       apiStore()
     }
   },
-  methods:{
-    getPaymentLink(){
+  methods: {
+    getPaymentLink() {
       const query = JSON.stringify({
         query: [
           {
@@ -85,14 +93,14 @@ export default {
         data: query,
       }
 
-      const getLink = async () =>{
+      const getLink = async () => {
         const res = await this.$axios(config)
         const data = await res.data.response.data[0].fieldData
         this.paymentLink = data.paymentLink
       }
       getLink()
-    }
-  }
+    },
+  },
 }
 </script>
 

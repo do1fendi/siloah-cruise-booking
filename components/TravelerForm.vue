@@ -8,9 +8,9 @@
         <b-form class="mt-2">
           <b-form-row>
             <b-col>
-              <label for="">Full Chinese Name / 中文姓名 </label>
+              <label for="">Chinese Name / 中文全名 </label>
               <b-form-input
-                placeholder="Full Chinese Name"
+                placeholder="Chinese Name / 中文全名"
                 name="chname"
                 @change="
                   setTraveler({
@@ -111,9 +111,9 @@
             </b-col>
           </b-form-row>
           <b-col class="pl-0 pr-0 mt-2">
-            <label for="">Id Number / 身份證 *</label>
+            <label for="">Id Number / 身分證號碼 *</label>
             <b-form-input
-              placeholder="Id Number / Passport"
+              placeholder="Id Number / 身分證號碼"
               name="idNumber"
               @change="
                 setTraveler({
@@ -128,7 +128,7 @@
           </b-col>
           <b-form-row v-if="obj.status == 'adult'" class="mt-2">
             <b-col>
-              <label for="">Phone Code *</label
+              <label for="">Phone Code / 國碼 *</label
               ><b-form-select
                 :options="GET_PHONECODE"
                 @change="
@@ -165,15 +165,15 @@
       </b-card>
     </div>
     <div class="mt-2 text-right">
-      <h6>
+      <h5>
         <b-badge
           class="showAgreement"
           variant="danger"
           @click="showAgreementModal"
           small
-          >Show Agreement</b-badge
+          >Agreement / 合約內容</b-badge
         >
-      </h6>
+      </h5>
     </div>
     <Submit v-on:checkForm="checkValidity($event)" />
     <Agreement ref="childAgreement" />

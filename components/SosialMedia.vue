@@ -12,6 +12,11 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 600px) {
+    .byPhone{
+        display: none;
+    }
+}
 .sosialMedia{
     width: 3rem;
     position:fixed;

@@ -1,6 +1,6 @@
 export const state = () => ({
   roomType: [
-    { value: '', text: 'Select Room Type' },
+    { value: '', text: 'Room / 選擇房' },
     { value: 'Inside_StateRoom', text: '內側客房' },
     { value: 'Porthole_StateRoom', text: '舷窗客房' },
     { value: 'OceanView_StateRoom', text: '海景客房' },

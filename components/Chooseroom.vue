@@ -3,7 +3,7 @@
     <b-form>
       <b-form-row>
         <b-col>
-          <label for="">Room / 選房</label>
+          <label for="">選擇房</label>
           <b-form-select
             v-model="form.roomType"
             :options="roomOption"
@@ -11,7 +11,7 @@
           ></b-form-select>
         </b-col>
         <b-col>
-          <label for="">Adult / 大人</label>
+          <label for="">大人</label>
           <b-form-select
             v-model="form.adultNum"
             :options="adult"
@@ -20,7 +20,7 @@
           ></b-form-select>
         </b-col>
         <b-col>
-          <label for="">Kids / 小孩 （6M-2Y）</label>
+          <label for="">小孩 (六個月-兩歲)</label>
           <b-form-select
             v-model="form.kidNum"
             :options="kid"

@@ -33,7 +33,7 @@
           v-model="regEmail"
           :state="valRegEmailState"
           type="email"
-          placeholder="Email"
+          placeholder="Email / 信箱"
           required
           ref="email"
         ></b-form-input>
@@ -49,7 +49,7 @@
           v-model="regPhoneNumber"
           type="number"
           :state="valRegPhoneNumberState"
-          placeholder="Phone Number 聯絡電話"
+          placeholder="Phone Number / 聯絡電話"
           required
           ref="phone"
         >
@@ -63,7 +63,7 @@
         <b-form-input
           :class="setFieldBorder"
           v-model="regAddress"
-          placeholder="Enter Address 地址"
+          placeholder="Enter Address / 地址"
           :state="valRegAddressState"
           required
           ref="address"

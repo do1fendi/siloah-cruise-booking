@@ -6,9 +6,9 @@
       v-if="GET_FORM.traveler.length > 0"
       class="submit"
     >
-      <h3>Detail</h3>
+      <h3>訂單資訊</h3>
       <hr />
-      <p class="mb-2">Room Type: {{ GET_FORM.roomType }}</p>
+      <p class="mb-2">房型: {{ GET_FORM.roomType }}</p>
 
       <!-- if only one traveler (adult) -->
       <div v-if="GET_FORM.adultNum == 1 && GET_FORM.kidNum == 0">
@@ -31,7 +31,7 @@
       <div v-else-if="GET_FORM.adultNum > 1 && GET_FORM.kidNum == 0">
         <p v-for="item in GET_FORM.traveler" :key="item.index">
           {{ item.index + 1 }}.
-          {{ item.status.replace(/^./, item.status[0].toUpperCase()) }} (大人):
+          {{ item.status.replace(/^./, item.status[0].toUpperCase()) }} (成人):
           {{
             item.index == 0 || item.index == 1
               ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
@@ -63,7 +63,7 @@
         <p v-for="item in GET_FORM.traveler" :key="item.index">
           {{ item.index + 1 }}.
           {{ item.status.replace(/^./, item.status[0].toUpperCase()) }}
-          {{ item.status == 'adult' ? '(大人)' : '(小孩)' }}:
+          {{ item.status == 'adult' ? '(成人)' : '(小孩)' }}:
           {{
             item.status == 'adult' || (item.status == 'kid' && item.index == 1)
               ? GET_PACKAGE_PRICE[GET_FORM.roomType].doubleRoom
@@ -97,7 +97,7 @@
         <p v-for="item in GET_FORM.traveler" :key="item.index">
           {{ item.index + 1 }}.
           {{ item.status.replace(/^./, item.status[0].toUpperCase()) }}
-          {{ item.status == 'adult' ? '(大人)' : '(小孩)' }}:
+          {{ item.status == 'adult' ? '(成人)' : '(小孩)' }}:
           {{
             item.status == 'adult'
               ? item.index == 0 || item.index == 1
