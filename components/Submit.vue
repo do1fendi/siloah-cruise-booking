@@ -131,7 +131,7 @@
       </div>
       <div class="mt-5 mb-2">
         <h5>
-          Total Price:
+          Price / 總額:
           {{
             this.GET_FORM.totalPrice
               .toString()
