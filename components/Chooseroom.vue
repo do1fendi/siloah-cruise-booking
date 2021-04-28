@@ -157,7 +157,7 @@ export default {
         this.GET_FORM.register.phoneNumber == '' ||
         this.GET_FORM.register.address == ''
       ) {
-        alert('Pleas fill all 訂購人 fields')
+        alert('請填寫訂購人所有欄位')
       } else if (this.form.roomType == '') {
         this.$refs.room.$el.focus()
       } else if (this.form.adultNum == 0) {
