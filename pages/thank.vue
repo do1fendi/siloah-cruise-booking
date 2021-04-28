@@ -1,30 +1,38 @@
 <template>
   <b-container class="text-center mt-3">
-    <div class="thank">
-      <b-alert variant="success" show>
-        <h1>Booking Success / 成功</h1>
-      </b-alert>
-      <div class="detail mt-5 text-left w-75">
-        <h4 class="mb-4">Detail / 訂單資訊</h4>
-        <p>Order / 訂單編號: {{ GET_ORDERCODE }}</p>
-        <p>Adult / 成人: {{ GET_FORM.adultNum }}</p>
-        <p>Kid / 小孩: {{ GET_FORM.kidNum }}</p>
-        <p>
-          Total Price / 總額:
-          {{
-            GET_FORM.totalPrice
-              .toString()
-              .replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')
-          }}
-          TWD
-        </p>
-        <h4 class="mt-5">
-          Payment Link (點選連結付款)
-          <a :href="paymentLink">{{ paymentLink }}</a>
-        </h4>
+    <b-overlay
+      :show="busy"
+      rounded
+      opacity="0.6"
+      spinner-big
+      spinner-variant="primary"
+      class="d-inline-block"      
+    >
+      <div class="thank">
+        <b-alert variant="success" show>
+          <h1>Booking Success / 成功</h1>
+        </b-alert>
+        <div class="detail mt-5 text-left w-75">
+          <h4 class="mb-4">Detail / 訂單資訊</h4>
+          <p>Order / 訂單編號: {{ GET_ORDERCODE }}</p>
+          <p>Adult / 成人: {{ GET_FORM.adultNum }}</p>
+          <p>Kid / 小孩: {{ GET_FORM.kidNum }}</p>
+          <p>
+            Total Price / 總額:
+            {{
+              GET_FORM.totalPrice
+                .toString()
+                .replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')
+            }}
+            TWD
+          </p>
+          <h4 class="mt-5">
+            Payment Link (點選連結付款): 
+            <a :href="paymentLink">{{ paymentLink }}</a>
+          </h4>
+        </div>
       </div>
-      
-    </div>
+    </b-overlay>
   </b-container>
 </template>
 
@@ -33,6 +41,7 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
+      busy: true,
       paymentLink: '',
     }
   },
@@ -40,8 +49,7 @@ export default {
     ...mapGetters('form', ['GET_FORM']),
     ...mapGetters(['GET_TOKEN', 'GET_GROUPNUMBER', 'GET_ORDERCODE']),
   },
-  mounted() {
-    console.log(this.GET_FORM.traveler.length)
+  mounted() {    
     if (this.GET_FORM.traveler.length > 0) {
       // const tempCode = Date.now().toString()
       // const orderCode = 'ORC'+ tempCode.slice(tempCode.length - 7)
@@ -97,6 +105,7 @@ export default {
         const res = await this.$axios(config)
         const data = await res.data.response.data[0].fieldData
         this.paymentLink = data.paymentLink
+        this.busy = false
       }
       getLink()
     },
