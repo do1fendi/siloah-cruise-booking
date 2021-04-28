@@ -177,6 +177,9 @@
     </div>
     <Submit v-on:checkForm="checkValidity($event)" />
     <Agreement ref="childAgreement" />
+    <a href='/cruiseAgreement.docx' download>
+Download
+</a>
     <!-- {{ this.GET_FORM }} -->
   </div>
 </template>
