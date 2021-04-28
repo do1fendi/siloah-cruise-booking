@@ -253,14 +253,14 @@ export default {
             switch (this.GET_FORM.traveler[ind].status) {
               case 'adult':
                 if (this.ageCalculator(val) != 'adult') {
-                  if (!submit) alert('Age should older than 2 years old!')
+                  if (!submit) alert('年齡應大於兩歲')
                 }
                 break
               case 'kid':
                 if (this.ageCalculator(val) == 'baby') {
-                  if (!submit) alert('Age should older than 6 months')
+                  if (!submit) alert('年齡應大於六個月')
                 } else if (this.ageCalculator(val) == 'adult') {
-                  if (!submit) alert('Age should below 2 years old')
+                  if (!submit) alert('年齡應小於兩歲')
                 }
                 break
             }
