@@ -165,22 +165,19 @@
       </b-card>
     </div>
     <div class="mt-2 text-right">
+      <a href='/cruiseAgreement.docx' download>
       <h5>
         <b-badge
           class="showAgreement"
-          variant="danger"
-          @click="showAgreementModal"
+          variant="danger"         
           small
-          >Agreement / 合約內容</b-badge
+          >Agreement / 下載合約內容</b-badge
         >
       </h5>
+      </a>
     </div>
     <Submit v-on:checkForm="checkValidity($event)" />
-    <Agreement ref="childAgreement" />
-    <a href='/cruiseAgreement.docx' download>
-Download
-</a>
-    <!-- {{ this.GET_FORM }} -->
+    <Agreement ref="childAgreement" />    
   </div>
 </template>
 

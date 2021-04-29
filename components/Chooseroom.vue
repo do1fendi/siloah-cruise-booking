@@ -30,7 +30,7 @@
       </b-form-row>
       <b-col class="text-right mt-2 pr-0">
         <b-button variant="primary" class="pl-5 pr-5" @click="onClickSet"
-          >Set</b-button
+          >Set / 確定</b-button
         >
       </b-col>
     </b-form>
