@@ -165,7 +165,7 @@
       </b-card>
     </div>
     <div class="mt-2 text-right">
-      <a href='/cruiseAgreement.docx' download>
+      <a href='/siloah-cruise-booking/cruiseAgreement.docx' download>
       <h5>
         <b-badge
           class="showAgreement"
