@@ -204,6 +204,17 @@ export default {
           })
           invalid += 1
         }
+        if (el.status == 'adult') {
+          if (el.phoneNumber === '' || el.phoneNumber.length < 5) {
+            this.$emit('checkForm', {
+              a: el.index,
+              b: '',
+              c: 'phoneNumber',
+              d: 'submit',
+            })
+            invalid += 1
+          }
+        }
       })
       // alert(invalid)
       if (!invalid) {
