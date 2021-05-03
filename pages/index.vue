@@ -112,7 +112,7 @@ export default {
         obj = JSON.parse(obj)
         // console.log(obj)
         const setPrices = {
-          Inside_StateRoom: {
+          ISS_Inside_StateRoom: {
             singleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass1_1_,
             doubleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass1_2_,
             tripleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass1_3_,
@@ -120,7 +120,7 @@ export default {
             kidRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass1_5_,
             serviceTax: obj.TOURPACKAGE_SALSEPRICE_TipClass1,
           },
-          Porthole_StateRoom: {
+          OPS_Porthole_StateRoom: {
             singleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass2_1_,
             doubleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass2_2_,
             tripleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass2_3_,
@@ -128,7 +128,7 @@ export default {
             kidRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass2_5_,
             serviceTax: obj.TOURPACKAGE_SALSEPRICE_TipClass2,
           },
-          OceanView_StateRoom: {
+          OSS_OceanView_StateRoom: {
             singleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass3_1_,
             doubleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass3_2_,
             tripleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass3_3_,
@@ -136,7 +136,7 @@ export default {
             kidRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass3_5_,
             serviceTax: obj.TOURPACKAGE_SALSEPRICE_TipClass3,
           },
-          Balcony_StateRoom: {
+          BSS_Balcony_StateRoom: {
             singleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass4_1_,
             doubleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass4_2_,
             tripleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass4_3_,
@@ -144,7 +144,7 @@ export default {
             kidRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass4_5_,
             serviceTax: obj.TOURPACKAGE_SALSEPRICE_TipClass4,
           },
-          Palace_Suite: {
+          DPS_Palace_Suite: {
             singleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass5_1_,
             doubleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass5_2_,
             tripleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass5_3_,
@@ -152,7 +152,7 @@ export default {
             kidRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass5_5_,
             serviceTax: obj.TOURPACKAGE_SALSEPRICE_TipClass5,
           },
-          Palace_Deluxe_Suite: {
+          DDS_Palace_Deluxe_Suite: {
             singleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass6_1_,
             doubleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass6_2_,
             tripleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass6_3_,
@@ -160,7 +160,7 @@ export default {
             kidRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass6_5_,
             serviceTax: obj.TOURPACKAGE_SALSEPRICE_TipClass6,
           },
-          Palace_Penthouse: {
+          DPP_Palace_Penthouse: {
             singleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass7_1_,
             doubleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass7_2_,
             tripleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass7_3_,
@@ -168,7 +168,7 @@ export default {
             kidRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass7_5_,
             serviceTax: obj.TOURPACKAGE_SALSEPRICE_TipClass7,
           },
-          Palace_Villa: {
+          DPV_Palace_Villa: {
             singleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass8_1_,
             doubleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass8_2_,
             tripleRoom: obj.TOURPACKAGE_SALSEPRICE_CruiseClass8_3_,

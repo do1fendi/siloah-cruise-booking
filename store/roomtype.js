@@ -1,14 +1,14 @@
 export const state = () => ({
   roomType: [
     { value: '', text: 'Room / 選擇房' },
-    { value: 'Inside_StateRoom', text: '內側客房' },
-    { value: 'Porthole_StateRoom', text: '舷窗客房' },
-    { value: 'OceanView_StateRoom', text: '海景客房' },
-    { value: 'Balcony_StateRoom', text: '露台客房' },
-    { value: 'Palace_Suite', text: '皇宮套房' },
-    { value: 'Palace_Deluxe_Suite', text: '皇宮豪華套房' },
-    { value: 'Palace_Penthouse', text: '皇宮行政套房' },
-    { value: 'Palace_Villa', text: '皇宮庭院別墅' },
+    { value: 'ISS_Inside_StateRoom', text: '內側客房' },
+    { value: 'OPS_Porthole_StateRoom', text: '舷窗客房' },
+    { value: 'OSS_OceanView_StateRoom', text: '海景客房' },
+    { value: 'BSS_Balcony_StateRoom', text: '露台客房' },
+    { value: 'DPS_Palace_Suite', text: '皇宮套房' },
+    { value: 'DDS_Palace_Deluxe_Suite', text: '皇宮豪華套房' },
+    { value: 'DPP_Palace_Penthouse', text: '皇宮行政套房' },
+    { value: 'DPV_Palace_Villa', text: '皇宮庭院別墅' },
   ],
   roomPerson: [
     { value: '', text: 'Select Room Person' },
@@ -20,7 +20,7 @@ export const state = () => ({
   ],
   // room price
   packagePrice: {    
-    Inside_StateRoom: {
+    ISS_Inside_StateRoom: {
       singleRoom: 0,
       doubleRoom: 0,
       tripleRoom: 0,
@@ -28,7 +28,7 @@ export const state = () => ({
       kidRoom: 0,
       serviceTax: 0,
     },
-    Porthole_StateRoom: {
+    OPS_Porthole_StateRoom: {
       singleRoom: 0,
       doubleRoom: 0,
       tripleRoom: 0,
@@ -36,7 +36,7 @@ export const state = () => ({
       kidRoom: 0,
       serviceTax: 0,
     },
-    OceanView_StateRoom: {
+    OSS_OceanView_StateRoom: {
       singleRoom: 0,
       doubleRoom: 0,
       tripleRoom: 0,
@@ -44,7 +44,7 @@ export const state = () => ({
       kidRoom: 0,
       serviceTax: 0,
     },
-    Balcony_StateRoom: {
+    BSS_Balcony_StateRoom: {
       singleRoom: 0,
       doubleRoom: 0,
       tripleRoom: 0,
@@ -52,7 +52,7 @@ export const state = () => ({
       kidRoom: 0,
       serviceTax: 0,
     },
-    Palace_Suite: {
+    DPS_Palace_Suite: {
       singleRoom: 0,
       doubleRoom: 0,
       tripleRoom: 0,
@@ -60,7 +60,7 @@ export const state = () => ({
       kidRoom: 0,
       serviceTax: 0,
     },
-    Palace_Deluxe_Suite: {
+    DDS_Palace_Deluxe_Suite: {
       singleRoom: 0,
       doubleRoom: 0,
       tripleRoom: 0,
@@ -68,7 +68,7 @@ export const state = () => ({
       kidRoom: 0,
       serviceTax: 0,
     },
-    Palace_Penthouse: {
+    DPP_Palace_Penthouse: {
       singleRoom: 0,
       doubleRoom: 0,
       tripleRoom: 0,
@@ -76,7 +76,7 @@ export const state = () => ({
       kidRoom: 0,
       serviceTax: 0,
     },
-    Palace_Villa: {
+    DPV_Palace_Villa: {
       singleRoom: 0,
       doubleRoom: 0,
       tripleRoom: 0,
