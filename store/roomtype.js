@@ -1,4 +1,14 @@
 export const state = () => ({
+  room:{
+    ISS_Inside_StateRoom: '內側客房',
+    OPS_Porthole_StateRoom: '舷窗客房',
+    OSS_OceanView_StateRoom: '海景客房',
+    BSS_Balcony_StateRoom: '露台客房',
+    DPS_Palace_Suite: '皇宮套房',
+    DDS_Palace_Deluxe_Suite: '皇宮豪華套房',
+    DPP_Palace_Penthouse: '皇宮行政套房',
+    DPV_Palace_Villa: '皇宮庭院別墅',
+  },
   roomType: [
     { value: '', text: 'Room / 選擇房' },
     { value: 'ISS_Inside_StateRoom', text: '內側客房' },
@@ -113,4 +123,5 @@ export const getters = {
   GET_ROOMTYPE: (state) => state.roomType,
   GET_ROOMPERSON: (state) => state.roomPerson,
   GET_PACKAGE_PRICE: (state) => state.packagePrice,
+  GET_ROOM:(state) => state.room
 }

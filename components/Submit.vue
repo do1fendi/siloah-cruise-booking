@@ -8,12 +8,12 @@
     >
       <h3>訂單資訊</h3>
       <hr />
-      <p class="mb-2">房型: {{ GET_FORM.roomType }}</p>
+      <p class="mb-2">房型: {{ GET_FORM.roomType }} ({{GET_ROOM[GET_FORM.roomType]}})</p>
 
       <!-- if only one traveler (adult) -->
       <div v-if="GET_FORM.adultNum == 1 && GET_FORM.kidNum == 0">
         <p>
-          1. Adult: {{ GET_PACKAGE_PRICE[GET_FORM.roomType].singleRoom }} +
+          1. Adult (成人): {{ GET_PACKAGE_PRICE[GET_FORM.roomType].singleRoom }} +
           {{ GET_PACKAGE_PRICE.portFee }} (港務税) +
           {{ GET_PACKAGE_PRICE[GET_FORM.roomType].serviceTax }} (服務費) =
           {{
@@ -152,7 +152,7 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
   computed: {
     ...mapGetters('form', ['GET_FORM', 'GET_FORMVALIDITY']),
-    ...mapGetters('roomtype', ['GET_PACKAGE_PRICE']),
+    ...mapGetters('roomtype', ['GET_PACKAGE_PRICE', 'GET_ROOM']),
     ...mapGetters(['GET_TOKEN', 'GET_TOURPACKAGE']),
     ...mapMutations('form', ['SET_FORMVALIDITY']),
     ...mapMutations(['SET_ORDERCODE']),
