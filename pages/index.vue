@@ -37,7 +37,7 @@ export default {
   computed: {
     ...mapGetters('country', ['GET_COUNTRY']),
     ...mapGetters(['GET_TOKEN', 'GET_USERNAME', 'GET_PASSWORD']),
-    ...mapGetters('roomtype', ['GET_PACKAGE_PRICE']),
+    ...mapGetters('roomtype', ['GET_PACKAGE_PRICE', 'GET_ROOMTYPE']),
     ...mapMutations('roomtype', ['SET_PACKAGE_PRICE']),
     ...mapMutations(['SET_GROUPNUMBER', 'SET_TOURPACKAGE']),
     ...mapGetters('form', ['GET_FORM']),
@@ -179,7 +179,36 @@ export default {
           portFee: obj.TOURPACKAGE_SALSEPRICE_CruisePortFee,
         }
         this.$store.commit('roomtype/SET_PACKAGE_PRICE', setPrices)
-        // console.log(JSON.stringify(this.GET_PACKAGE_PRICE))
+
+        // Change roomtype array in the store, if the room is unavailable
+        let curRooms = this.GET_ROOMTYPE
+        let updatedRooms = []
+        if (setPrices.ISS_Inside_StateRoom.singleRoom == 0){
+           curRooms = curRooms.filter((val) => val.value != 'ISS_Inside_StateRoom')
+        }
+        if (setPrices.OPS_Porthole_StateRoom.singleRoom == 0){
+           curRooms = curRooms.filter((val) => val.value != 'OPS_Porthole_StateRoom')
+        }
+        if (setPrices.OSS_OceanView_StateRoom.singleRoom == 0){
+           curRooms = curRooms.filter((val) => val.value != 'OSS_OceanView_StateRoom')
+        }
+        if (setPrices.BSS_Balcony_StateRoom.singleRoom == 0){
+           curRooms = curRooms.filter((val) => val.value != 'BSS_Balcony_StateRoom')
+        }
+        if (setPrices.DPS_Palace_Suite.singleRoom == 0){
+           curRooms = curRooms.filter((val) => val.value != 'DPS_Palace_Suite')
+        }
+        if (setPrices.DDS_Palace_Deluxe_Suite.singleRoom == 0){
+           curRooms = curRooms.filter((val) => val.value != 'DDS_Palace_Deluxe_Suite')
+        }
+        if (setPrices.DPP_Palace_Penthouse.singleRoom == 0){
+           curRooms = curRooms.filter((val) => val.value != 'DPP_Palace_Penthouse')
+        }
+        if (setPrices.DPV_Palace_Villa.singleRoom == 0){
+           curRooms = curRooms.filter((val) => val.value != 'DPV_Palace_Villa')
+        }
+        console.log(curRooms)
+         this.$store.commit('roomtype/SET_ROOMTYPE', curRooms)
       }
       apiGetPackage()
     },

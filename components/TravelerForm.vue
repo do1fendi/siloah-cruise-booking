@@ -165,19 +165,16 @@
       </b-card>
     </div>
     <div class="mt-2 text-right">
-      <a href='/siloah-cruise-booking/cruiseAgreement.pdf' download>
       <h5>
-        <b-badge
-          class="showAgreement"
-          variant="danger"         
-          small
-          >Agreement / 下載合約內容</b-badge
-        >
+        <a href="/siloah-cruise-booking/cruiseAgreement.pdf" download>
+          <b-badge class="showAgreement" variant="danger" small
+            >Agreement / 下載合約內容</b-badge
+          >
+        </a>
       </h5>
-      </a>
     </div>
     <Submit v-on:checkForm="checkValidity($event)" />
-    <Agreement ref="childAgreement" />    
+    <Agreement ref="childAgreement" />
   </div>
 </template>
 
